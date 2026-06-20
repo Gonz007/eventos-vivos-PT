@@ -3,10 +3,22 @@ using EventBooking.Application;
 using EventBooking.Infrastructure;
 using EventBooking.Infrastructure.Persistence;
 using EventBooking.Infrastructure.Persistence.Seed;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// ── Resolve DB path to repository root ──────────────────────────────────────
+// Regardless of the working directory when `dotnet run` is invoked,
+// the DB file always lands at <repo-root>/eventbooking.db
+var repoRoot    = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, "..", "..", "..", "..", ".."));
+var dbPath      = Path.Combine(repoRoot, "eventbooking.db");
+var connString  = $"Data Source={dbPath}";
+
+// Override whatever is in appsettings so tests/CI never need to touch it
+builder.Configuration["ConnectionStrings:DefaultConnection"] = connString;
+// ─────────────────────────────────────────────────────────────────────────────
 
 // --- Services ---
 builder.Services.AddApplication();
@@ -19,9 +31,9 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "EventBooking API",
-        Version = "v1",
-        Description = "Sistema de reservas para EventosVivos"
+        Title       = "EventBooking API",
+        Version     = "v1",
+        Description = "Sistema de reservas EventosVivos — SQLite · eventbooking.db en raíz del repositorio"
     });
 
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -52,18 +64,27 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
-// --- Database migration & seed ---
+// --- Apply migrations & seed on startup ---
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    // Drop & recreate ensures a clean schema on every startup (dev/test only).
-    // In production replace with db.Database.MigrateAsync().
-    db.Database.EnsureDeleted();
-    db.Database.EnsureCreated();
+
+    if (app.Environment.IsEnvironment("Testing"))
+    {
+        // Integration tests inject their own SQLite in-memory context
+        db.Database.EnsureCreated();
+    }
+    else
+    {
+        // Creates eventbooking.db at repo root and applies all pending migrations
+        await db.Database.MigrateAsync();
+        app.Logger.LogInformation("Database ready at: {DbPath}", dbPath);
+    }
+
     await ApplicationDbContextSeed.SeedAsync(db);
 }
 
 app.Run();
 
-// Needed for integration tests
+// Exposed for integration tests
 public partial class Program { }

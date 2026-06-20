@@ -9,3 +9,4 @@ C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Domain\
 C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Domain\obj\Debug\net9.0\refint\EventBooking.Domain.dll
 C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Domain\obj\Debug\net9.0\EventBooking.Domain.pdb
 C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Domain\obj\Debug\net9.0\ref\EventBooking.Domain.dll
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Domain\obj\Debug\net9.0\EventBooking.Domain.sourcelink.json

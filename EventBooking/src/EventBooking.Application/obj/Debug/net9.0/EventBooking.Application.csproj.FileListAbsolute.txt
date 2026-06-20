@@ -13,3 +13,4 @@ C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Applica
 C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Application\obj\Debug\net9.0\refint\EventBooking.Application.dll
 C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Application\obj\Debug\net9.0\EventBooking.Application.pdb
 C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Application\obj\Debug\net9.0\ref\EventBooking.Application.dll
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Application\obj\Debug\net9.0\EventBooking.Application.sourcelink.json
