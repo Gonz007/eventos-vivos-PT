@@ -1,0 +1,61 @@
+.form-card, .result-card {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.reservation-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 16px;
+}
+
+.success-icon-wrap {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 16px 0 8px;
+}
+
+.success-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  color: #2e7d32;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 16px 0;
+
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.result-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.result-label {
+  font-size: 0.75rem;
+  color: #757575;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.result-value {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #212121;
+}
+
+mat-card-actions {
+  display: flex;
+  gap: 12px;
+  padding: 16px !important;
+}

@@ -1,0 +1,11 @@
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Domain\bin\Debug\net9.0\EventBooking.Domain.deps.json
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Domain\bin\Debug\net9.0\EventBooking.Domain.dll
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Domain\bin\Debug\net9.0\EventBooking.Domain.pdb
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Domain\obj\Debug\net9.0\EventBooking.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Domain\obj\Debug\net9.0\EventBooking.Domain.AssemblyInfoInputs.cache
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Domain\obj\Debug\net9.0\EventBooking.Domain.AssemblyInfo.cs
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Domain\obj\Debug\net9.0\EventBooking.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Domain\obj\Debug\net9.0\EventBooking.Domain.dll
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Domain\obj\Debug\net9.0\refint\EventBooking.Domain.dll
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Domain\obj\Debug\net9.0\EventBooking.Domain.pdb
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Domain\obj\Debug\net9.0\ref\EventBooking.Domain.dll

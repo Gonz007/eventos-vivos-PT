@@ -1,0 +1,15 @@
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Application\obj\Debug\net9.0\EventBooking.Application.csproj.AssemblyReference.cache
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Application\obj\Debug\net9.0\EventBooking.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Application\obj\Debug\net9.0\EventBooking.Application.AssemblyInfoInputs.cache
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Application\obj\Debug\net9.0\EventBooking.Application.AssemblyInfo.cs
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Application\obj\Debug\net9.0\EventBooking.Application.csproj.CoreCompileInputs.cache
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Application\bin\Debug\net9.0\EventBooking.Application.deps.json
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Application\bin\Debug\net9.0\EventBooking.Application.dll
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Application\bin\Debug\net9.0\EventBooking.Application.pdb
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Application\bin\Debug\net9.0\EventBooking.Domain.dll
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Application\bin\Debug\net9.0\EventBooking.Domain.pdb
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Application\obj\Debug\net9.0\EventBoo.DC5207BD.Up2Date
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Application\obj\Debug\net9.0\EventBooking.Application.dll
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Application\obj\Debug\net9.0\refint\EventBooking.Application.dll
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Application\obj\Debug\net9.0\EventBooking.Application.pdb
+C:\Users\Sebastian\OneDrive\Desktop\PCeiba\EventBooking\src\EventBooking.Application\obj\Debug\net9.0\ref\EventBooking.Application.dll

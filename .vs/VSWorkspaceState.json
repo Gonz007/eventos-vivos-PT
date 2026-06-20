@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\EventBooking",
+    "\\EventBooking\\src",
+    "\\EventBooking\\src\\EventBooking.Application",
+    "\\EventBooking\\src\\EventBooking.Application\\DTOs"
+  ],
+  "SelectedNode": "\\EventBooking\\src\\EventBooking.Application\\DTOs\\EventDto.cs",
+  "PreviewInSolutionExplorer": false
+}

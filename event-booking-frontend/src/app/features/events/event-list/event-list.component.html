@@ -1,0 +1,123 @@
+<div class="page-header">
+  <h1><mat-icon style="vertical-align:middle;margin-right:8px">event</mat-icon>Events</h1>
+  <a mat-raised-button color="primary" routerLink="/events/create">
+    <mat-icon>add</mat-icon> Create Event
+  </a>
+</div>
+
+<!-- Filters -->
+<mat-card class="filter-card">
+  <mat-card-content>
+    <form [formGroup]="filterForm" class="filter-form">
+      <mat-form-field>
+        <mat-label>Search by title</mat-label>
+        <input matInput formControlName="search" placeholder="Search...">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Event Type</mat-label>
+        <mat-select formControlName="type">
+          <mat-option [value]="null">All Types</mat-option>
+          @for (t of eventTypes; track t.value) {
+            <mat-option [value]="t.value">{{ t.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option [value]="null">All Statuses</mat-option>
+          @for (s of eventStatuses; track s.value) {
+            <mat-option [value]="s.value">{{ s.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-stroked-button type="button" (click)="clearFilters()">
+        <mat-icon>clear</mat-icon> Clear
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<!-- Loading -->
+@if (loading()) {
+  <div class="spinner-container">
+    <mat-spinner diameter="48"></mat-spinner>
+  </div>
+}
+
+<!-- Table -->
+@if (!loading()) {
+  <mat-card class="table-card">
+    <mat-card-content>
+      @if (events().length === 0) {
+        <div class="empty-state">
+          <mat-icon>event_busy</mat-icon>
+          <p>No events found. Try adjusting the filters or create a new event.</p>
+        </div>
+      } @else {
+        <div class="table-responsive">
+          <table mat-table [dataSource]="events()" class="full-width">
+
+            <ng-container matColumnDef="title">
+              <th mat-header-cell *matHeaderCellDef>Title</th>
+              <td mat-cell *matCellDef="let e">
+                <strong>{{ e.title }}</strong>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="venueName">
+              <th mat-header-cell *matHeaderCellDef>Venue</th>
+              <td mat-cell *matCellDef="let e">{{ e.venueName }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="maxCapacity">
+              <th mat-header-cell *matHeaderCellDef>Capacity</th>
+              <td mat-cell *matCellDef="let e">{{ e.maxCapacity }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="eventType">
+              <th mat-header-cell *matHeaderCellDef>Type</th>
+              <td mat-cell *matCellDef="let e">{{ e.eventType }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+              <th mat-header-cell *matHeaderCellDef>Status</th>
+              <td mat-cell *matCellDef="let e">
+                <span class="status-chip" [ngClass]="getStatusClass(e.status)">{{ e.status }}</span>
+              </td>
+            </ng-container>
+
+            <ng-container matColumnDef="startDate">
+              <th mat-header-cell *matHeaderCellDef>Start Date</th>
+              <td mat-cell *matCellDef="let e">{{ e.startDate | date:'MMM d, y, h:mm a' }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="ticketPrice">
+              <th mat-header-cell *matHeaderCellDef>Price</th>
+              <td mat-cell *matCellDef="let e">{{ e.ticketPrice | currency }}</td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>Actions</th>
+              <td mat-cell *matCellDef="let e">
+                <button mat-icon-button color="accent" matTooltip="View Report" (click)="viewReport(e.id)">
+                  <mat-icon>bar_chart</mat-icon>
+                </button>
+                <button mat-icon-button color="primary" matTooltip="Reserve Tickets" (click)="createReservation(e.id)">
+                  <mat-icon>bookmark_add</mat-icon>
+                </button>
+              </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="table-row"></tr>
+          </table>
+        </div>
+      }
+    </mat-card-content>
+  </mat-card>
+}

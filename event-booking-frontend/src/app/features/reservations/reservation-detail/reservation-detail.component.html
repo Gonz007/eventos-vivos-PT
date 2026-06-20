@@ -1,0 +1,142 @@
+<div class="page-header">
+  <h1><mat-icon style="vertical-align:middle;margin-right:8px">receipt_long</mat-icon>Reservation Detail</h1>
+  <a mat-stroked-button routerLink="/events">
+    <mat-icon>arrow_back</mat-icon> Back to Events
+  </a>
+</div>
+
+@if (loading()) {
+  <div class="spinner-container">
+    <mat-spinner diameter="48"></mat-spinner>
+  </div>
+}
+
+@if (!loading() && reservation()) {
+  <div class="detail-layout">
+
+    <!-- Main info card -->
+    <mat-card class="info-card">
+      <mat-card-header>
+        <mat-card-title>
+          Reservation #{{ reservation()!.id }}
+        </mat-card-title>
+        <mat-card-subtitle>{{ reservation()!.eventTitle }}</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="detail-grid">
+
+          <div class="detail-item">
+            <span class="detail-label"><mat-icon>person</mat-icon> Buyer Name</span>
+            <span class="detail-value">{{ reservation()!.buyerName }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label"><mat-icon>email</mat-icon> Email</span>
+            <span class="detail-value">{{ reservation()!.buyerEmail }}</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label"><mat-icon>confirmation_number</mat-icon> Quantity</span>
+            <span class="detail-value">{{ reservation()!.quantity }} ticket(s)</span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label"><mat-icon>flag</mat-icon> Status</span>
+            <span class="status-chip" [ngClass]="getStatusClass(reservation()!.status)">
+              {{ reservation()!.status }}
+            </span>
+          </div>
+
+          <div class="detail-item">
+            <span class="detail-label"><mat-icon>schedule</mat-icon> Created At</span>
+            <span class="detail-value">{{ reservation()!.createdAt | date:'medium' }}</span>
+          </div>
+
+          @if (reservation()!.cancelledAt) {
+            <div class="detail-item">
+              <span class="detail-label"><mat-icon>cancel</mat-icon> Cancelled At</span>
+              <span class="detail-value">{{ reservation()!.cancelledAt | date:'medium' }}</span>
+            </div>
+          }
+
+          @if (reservation()!.reservationCode) {
+            <div class="detail-item highlight">
+              <span class="detail-label"><mat-icon>qr_code</mat-icon> Reservation Code</span>
+              <span class="reservation-code">{{ reservation()!.reservationCode }}</span>
+            </div>
+          }
+
+          @if (reservation()!.isLostSale) {
+            <div class="detail-item lost-sale">
+              <span class="detail-label"><mat-icon>warning</mat-icon> Lost Sale</span>
+              <span class="detail-value">This cancellation was registered as a lost sale (within 48h of event).</span>
+            </div>
+          }
+
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Actions card -->
+    <mat-card class="actions-card">
+      <mat-card-header>
+        <mat-card-title>Actions</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="action-buttons">
+
+          @if (canConfirm()) {
+            <button mat-raised-button color="primary"
+                    (click)="confirmPayment()"
+                    [disabled]="actionLoading()">
+              @if (actionLoading()) {
+                <mat-spinner diameter="18" style="display:inline-block;margin-right:6px;"></mat-spinner>
+              } @else {
+                <mat-icon>check_circle</mat-icon>
+              }
+              Confirm Payment
+            </button>
+          }
+
+          @if (canCancel()) {
+            <button mat-raised-button color="warn"
+                    (click)="cancelReservation()"
+                    [disabled]="actionLoading()">
+              @if (actionLoading()) {
+                <mat-spinner diameter="18" style="display:inline-block;margin-right:6px;"></mat-spinner>
+              } @else {
+                <mat-icon>cancel</mat-icon>
+              }
+              Cancel Reservation
+            </button>
+          }
+
+          <button mat-stroked-button (click)="loadReservation()" [disabled]="loading() || actionLoading()">
+            <mat-icon>refresh</mat-icon> Refresh
+          </button>
+
+        </div>
+
+        @if (!canConfirm() && !canCancel()) {
+          <p class="no-actions-msg">
+            <mat-icon>info</mat-icon>
+            No actions available for a <strong>{{ reservation()!.status }}</strong> reservation.
+          </p>
+        }
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+}
+
+@if (!loading() && !reservation()) {
+  <mat-card>
+    <mat-card-content class="empty-state">
+      <mat-icon>error_outline</mat-icon>
+      <p>Reservation not found.</p>
+      <a mat-stroked-button routerLink="/events">Back to Events</a>
+    </mat-card-content>
+  </mat-card>
+}

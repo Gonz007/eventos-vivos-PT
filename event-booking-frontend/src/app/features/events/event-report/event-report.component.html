@@ -1,0 +1,111 @@
+<div class="page-header">
+  <h1><mat-icon style="vertical-align:middle;margin-right:8px">bar_chart</mat-icon>Occupancy Report</h1>
+  <a mat-stroked-button routerLink="/events">
+    <mat-icon>arrow_back</mat-icon> Back to Events
+  </a>
+</div>
+
+@if (loading()) {
+  <div class="spinner-container">
+    <mat-spinner diameter="48"></mat-spinner>
+  </div>
+}
+
+@if (!loading() && report()) {
+  <div class="report-container">
+
+    <!-- Header card -->
+    <mat-card class="header-card">
+      <mat-card-header>
+        <mat-card-title>{{ report()!.eventTitle }}</mat-card-title>
+        <mat-card-subtitle>Event ID: {{ report()!.eventId }}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <span class="status-chip" [ngClass]="getStatusClass(report()!.status)">
+          {{ report()!.status }}
+        </span>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Metrics grid -->
+    <div class="metrics-grid">
+
+      <!-- Sold Tickets -->
+      <mat-card class="metric-card">
+        <mat-card-content>
+          <div class="metric-icon sold">
+            <mat-icon>confirmation_number</mat-icon>
+          </div>
+          <div class="metric-value">{{ report()!.soldTickets }}</div>
+          <div class="metric-label">Sold Tickets</div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Available Tickets -->
+      <mat-card class="metric-card">
+        <mat-card-content>
+          <div class="metric-icon available">
+            <mat-icon>event_seat</mat-icon>
+          </div>
+          <div class="metric-value">{{ report()!.availableTickets }}</div>
+          <div class="metric-label">Available Tickets</div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Occupancy % -->
+      <mat-card class="metric-card">
+        <mat-card-content>
+          <div class="metric-icon occupancy">
+            <mat-icon>donut_large</mat-icon>
+          </div>
+          <div class="metric-value"
+               [style.color]="getOccupancyColor(report()!.occupancyPercentage)">
+            {{ report()!.occupancyPercentage | number:'1.1-1' }}%
+          </div>
+          <div class="metric-label">Occupancy</div>
+          <!-- Progress bar (CSS only, no chart libs) -->
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill"
+                 [style.width.%]="report()!.occupancyPercentage"
+                 [style.background]="getOccupancyColor(report()!.occupancyPercentage)">
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Revenue -->
+      <mat-card class="metric-card">
+        <mat-card-content>
+          <div class="metric-icon revenue">
+            <mat-icon>payments</mat-icon>
+          </div>
+          <div class="metric-value">{{ report()!.totalRevenue | currency }}</div>
+          <div class="metric-label">Total Revenue</div>
+        </mat-card-content>
+      </mat-card>
+
+    </div>
+
+    <!-- Actions -->
+    <div class="report-actions">
+      <button mat-raised-button color="primary" (click)="loadReport()">
+        <mat-icon>refresh</mat-icon> Refresh Report
+      </button>
+      <a mat-stroked-button [routerLink]="['/reservations/create']"
+         [queryParams]="{ eventId: eventId }">
+        <mat-icon>bookmark_add</mat-icon> New Reservation
+      </a>
+    </div>
+
+  </div>
+}
+
+@if (!loading() && !report()) {
+  <mat-card>
+    <mat-card-content class="empty-state">
+      <mat-icon>error_outline</mat-icon>
+      <p>Could not load the report for this event.</p>
+      <a mat-stroked-button routerLink="/events">Back to Events</a>
+    </mat-card-content>
+  </mat-card>
+}

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EventBooking.API</name>
+    </assembly>
+    <members>
+        <member name="M:EventBooking.API.Controllers.EventsController.CreateEvent(EventBooking.Application.Events.Commands.CreateEvent.CreateEventCommand,System.Threading.CancellationToken)">
+            <summary>Creates a new event.</summary>
+        </member>
+        <member name="M:EventBooking.API.Controllers.EventsController.GetEvents(System.Nullable{EventBooking.Domain.Enums.EventType},System.Nullable{System.Int32},System.Nullable{EventBooking.Domain.Enums.EventStatus},System.String,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Threading.CancellationToken)">
+            <summary>Lists events with optional filters.</summary>
+        </member>
+        <member name="M:EventBooking.API.Controllers.EventsController.GetEventById(System.Int32,System.Threading.CancellationToken)">
+            <summary>Gets a single event by ID.</summary>
+        </member>
+        <member name="M:EventBooking.API.Controllers.EventsController.GetOccupancyReport(System.Int32,System.Threading.CancellationToken)">
+            <summary>Gets the occupancy report for an event.</summary>
+        </member>
+        <member name="M:EventBooking.API.Controllers.ReservationsController.CreateReservation(EventBooking.Application.Reservations.Commands.CreateReservation.CreateReservationCommand,System.Threading.CancellationToken)">
+            <summary>Creates a new reservation for an event.</summary>
+        </member>
+        <member name="M:EventBooking.API.Controllers.ReservationsController.ConfirmPayment(System.Int32,System.Threading.CancellationToken)">
+            <summary>Confirms payment for a reservation.</summary>
+        </member>
+        <member name="M:EventBooking.API.Controllers.ReservationsController.CancelReservation(System.Int32,System.Threading.CancellationToken)">
+            <summary>Cancels a reservation.</summary>
+        </member>
+        <member name="M:EventBooking.API.Controllers.ReservationsController.GetReservationById(System.Int32,System.Threading.CancellationToken)">
+            <summary>Gets a reservation by ID.</summary>
+        </member>
+    </members>
+</doc>
